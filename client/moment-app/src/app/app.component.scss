@@ -1,0 +1,20 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-container {
+  height: calc(100% - 63.9915px);
+}
+
+.drawer {
+  min-width: 200px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  li {
+    margin: 10px;
+  }
+}

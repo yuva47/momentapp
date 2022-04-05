@@ -29,7 +29,11 @@ export const getMoments = async function (req, res) {
 }
 
 export const createMoment = async function (req, res, next) {
-  const { title, tags } = req.body;
+  let { title, tags } = req.body;
+  if (tags) {
+    tags = JSON.parse(tags);
+  }
+
   const owner = req.user._id;
   const moment = new Moment({ title, tags, file: req.file.filename, owner })
   await moment.save().catch((e) => next({ code: 400, message: "Invalid Parameters" }));;
@@ -66,7 +70,10 @@ export const updateMoment = async function (req, res) {
     next({ code: 400, message: "Invalid Parameters" })
     return;
   }
-  const { title, tags } = req.body;
+  let { title, tags } = req.body;
+  if (tags) {
+    tags = JSON.parse(tags);
+  }
   const owner = req.user._id;
   const moment = { title, tags, file: req.file.filename, owner }
 

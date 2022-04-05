@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row justify-content-md-center mt-2">
+    <mat-card class="col-md-10">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>SignUp</mat-card-title>
+      </mat-card-header>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <mat-card-content class="row justify-content-md-center">
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input required matInput formControlName="firstName">
+            <mat-error>{{common.getError(form.controls['firstName'])}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input required matInput formControlName="lastName">
+            <mat-error>{{common.getError(form.controls['lastName'])}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <span matPrefix>
+              <mat-icon mat-icon-button>phone</mat-icon>
+            </span>
+            <mat-label>Mobile</mat-label>
+            <input required matInput formControlName="mobile">
+            <mat-error>{{common.getError(form.controls['mobile'])}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <span matPrefix>
+              <mat-icon mat-icon-button>mail</mat-icon>
+            </span>
+            <mat-label>Email</mat-label>
+            <input required matInput formControlName="email">
+            <mat-error>{{common.getError(form.controls['email'])}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city">
+              <mat-option *ngFor="let city of cities" [value]="city">
+                {{city}}
+              </mat-option>
+            </mat-select>
+            <mat-error>{{common.getError(form.controls['city'])}}</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input [type]="isPassword ? 'password' :'text'" required matInput formControlName="password">
+            <mat-error>{{common.getError(form.controls['password'])}}</mat-error>
+            <span *ngIf="!isPassword" (click)="isPassword = !isPassword" matSuffix>
+              <mat-icon mat-icon-button>visibility</mat-icon>
+            </span>
+            <span *ngIf="isPassword" (click)="isPassword = !isPassword" matSuffix>
+              <mat-icon mat-icon-button>visibility_off</mat-icon>
+            </span>
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-5" appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" required matInput formControlName="cpassword">
+            <mat-error>{{common.getError(form.controls['cpassword'])}}</mat-error>
+          </mat-form-field>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Submit</button>
+          <button type="button" [routerLink]="['/login']" mat-button>Already have an account ? Login</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row justify-content-md-center mt-2">
+    <mat-card class="col-md-10 justify-content-md-center">
+      <mat-card-header>
+        <mat-card-title>{{isEdit ? "Update moment" : "Create Moment"}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="submit()" [formGroup]="form">
+          <div class="row justify-content-md-center">
+            <mat-form-field appearance="fill">
+              <mat-label>Title</mat-label>
+              <input required matInput name="title" formControlName="title">
+              <mat-error>{{common.getError(form.controls['title'])}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row justify-content-md-center">
+            <mat-form-field appearance="fill">
+              <mat-label>Tags</mat-label>
+              <mat-chip-list #chipList aria-label="Fruit selection">
+                <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+                  {{tag}}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+                <input placeholder="New Tag..." [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+          <div class="row justify-content-md-center">
+            <input type="file" class="file-input" accept="image/*" multiple="false" (change)="onFileSelected($event)"
+              #fileUpload>
+
+            <div class="file-upload">
+
+              {{fileName || "No file uploaded yet."}}
+
+              <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="row justify-content-md-center">
+            <button class="submit" mat-raised-button color="primary"> Submit </button>
+          </div>
+        </form>
+
+      </mat-card-content>
+
+
+    </mat-card>
+
+  </div>
+
+
+
+</div>

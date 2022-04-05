@@ -21,8 +21,8 @@ app.use(session({
 }))
 
 app.use(express.json());
-app.use("/auth", authRouter);
-app.use("/moments", momentRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/moments", momentRouter);
 app.use(globalError);
 
 mongoose.connect(DB_URL, {

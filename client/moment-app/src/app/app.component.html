@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <button *ngIf="common.user" (click)="drawer.toggle()" mat-icon-button class="example-icon"
+    aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button (click)="logout()" mat-menu-item>Logout</button>
+  </mat-menu>
+  <span>Moment App</span>
+  <span class="example-spacer"></span>
+  <span *ngIf="common.user"> {{common.user.firstName}} </span>
+  <button [matMenuTriggerFor]="menu" *ngIf="common.user" mat-icon-button class="example-icon"
+    aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
+<mat-drawer-container class="example-container">
+  <mat-drawer class="drawer" #drawer mode="side">
+    <ul>
+      <li><a mat-button [routerLink]="['/momentList']">Moment List</a></li>
+      <li><a mat-button [routerLink]="['/moment']">Create Moment</a></li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
